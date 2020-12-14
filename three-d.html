@@ -46,12 +46,35 @@
     </div>
     </div>
   <!-- <h2>Demo page</h2> -->
-  <iframe src="https://three-d-poc.herokuapp.com/"></iframe>
+  <iframe src="https://zoompoc.herokuapp.com/"></iframe>
+  <!-- <iframe src="https://three-d-poc.herokuapp.com/"></iframe> -->
   <!-- <iframe src="http://localhost:8080/"></iframe> -->
 
   <!-- Footer -->
   <footer class="w3-container w3-center w3-black w3-xlarge">
       <p class="w3-medium">Powered by <a href="https://www.sqrinfotech.com/" target="_blank">SQR Ltd</a></p>
     </footer>
+    <script>
+      var eventMethod = window.addEventListener
+			? "addEventListener"
+			: "attachEvent";
+	var eventer = window[eventMethod];
+	var messageEvent = eventMethod === "attachEvent"
+		? "onmessage"
+		: "message";
+
+	eventer(messageEvent, function (e) {
+
+		// if (e.origin !== 'http://the-trusted-iframe-origin.com') return;
+
+		// if (e.data === "myevent" || e.message === "myevent")
+		// 	alert('Message from iframe just came!');
+    if(e.data.url == 'true') {
+      location.href = e.data.href;
+    }
+
+		console.log(e);
+	});
+    </script>
   </body>
 </html>
